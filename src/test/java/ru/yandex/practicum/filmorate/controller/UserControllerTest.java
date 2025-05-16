@@ -17,7 +17,6 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    // "Посмотрите, как контроллер реагирует на пустой запрос"
     public void ifRequestIsEmpty() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/users")
                         .contentType(MediaType.APPLICATION_JSON)

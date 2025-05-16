@@ -33,7 +33,7 @@ public class FilmController {
 
     @PostMapping
     public Film create(@Valid @RequestBody Film film) {
-        if (film.getReleaseDate() != null && film.getReleaseDate().isBefore(firstFilmDate)) {
+        if (film.getReleaseDate().isBefore(firstFilmDate)) {
             throw new ValidationException("Дата релиза должна быть не раньше 28.12.1895");
         }
         film.setId(getNextId());
@@ -58,15 +58,10 @@ public class FilmController {
         if (newFilm.getDescription() != null && !newFilm.getDescription().isBlank()) {
             oldFilm.setDescription(newFilm.getDescription());
         }
-        if (newFilm.getName() != null && !newFilm.getName().isBlank()) {
-            oldFilm.setName(newFilm.getName());
-        }
-        if (newFilm.getDuration() != null) {
-            oldFilm.setDuration(newFilm.getDuration());
-        }
-        if (newFilm.getReleaseDate() != null) {
-            oldFilm.setReleaseDate(newFilm.getReleaseDate());
-        }
+
+        oldFilm.setName(newFilm.getName());
+        oldFilm.setDuration(newFilm.getDuration());
+        oldFilm.setReleaseDate(newFilm.getReleaseDate());
 
         return oldFilm;
     }

@@ -92,6 +92,23 @@ public class UserTest {
     }
 
     @Test
+    public void ifLoginContainsSpace() {
+        User user = User.builder()
+                .email("user@yandex.ru")
+                .login("login user ")
+                .name("first name")
+                .birthday(LocalDate.of(2000, 3, 15))
+                .build();
+
+        Set<String> violations = validator.validate(user)
+                .stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.toSet());
+
+        assertTrue(violations.contains("Login не может содержать пробелы"));
+    }
+
+    @Test
     public void ifDateIsInFuture() {
         User user = User.builder()
                 .email("user@yandex.ru")

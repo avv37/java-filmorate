@@ -33,12 +33,6 @@ public class UserController {
         if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
-
-        if (users.containsValue(user)) {
-            log.info("Такой пользователь уже есть");
-            throw new ValidationException("Такой пользователь уже есть");
-        }
-        // формируем дополнительные данные
         user.setId(getNextId());
         users.put(user.getId(), user);
         return user;
@@ -57,15 +51,14 @@ public class UserController {
 
         User oldUser = users.get(newUser.getId());
 
-        if (newUser.getEmail() != null && !newUser.getEmail().isBlank()) {
-            oldUser.setEmail(newUser.getEmail());
-        }
-        if (newUser.getLogin() != null && !newUser.getLogin().isBlank()) {
-            oldUser.setLogin(newUser.getLogin());
-        }
-        if (newUser.getName() != null && !newUser.getName().isBlank()) {
+        oldUser.setEmail(newUser.getEmail());
+        oldUser.setLogin(newUser.getLogin());
+        if (newUser.getName() == null || newUser.getName().isBlank()) {
+            oldUser.setName(newUser.getLogin());
+        } else {
             oldUser.setName(newUser.getName());
         }
+
         if (newUser.getBirthday() != null) {
             oldUser.setBirthday(newUser.getBirthday());
         }
