@@ -59,9 +59,7 @@ public class UserController {
             oldUser.setName(newUser.getName());
         }
 
-        if (newUser.getBirthday() != null) {
-            oldUser.setBirthday(newUser.getBirthday());
-        }
+        oldUser.setBirthday(newUser.getBirthday());
 
         return oldUser;
     }

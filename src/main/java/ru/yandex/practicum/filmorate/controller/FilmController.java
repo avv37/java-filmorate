@@ -55,10 +55,7 @@ public class FilmController {
 
         Film oldFilm = films.get(newFilm.getId());
 
-        if (newFilm.getDescription() != null && !newFilm.getDescription().isBlank()) {
-            oldFilm.setDescription(newFilm.getDescription());
-        }
-
+        oldFilm.setDescription(newFilm.getDescription());
         oldFilm.setName(newFilm.getName());
         oldFilm.setDuration(newFilm.getDuration());
         oldFilm.setReleaseDate(newFilm.getReleaseDate());

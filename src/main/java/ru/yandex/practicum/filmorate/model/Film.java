@@ -16,11 +16,11 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class Film {
-    @EqualsAndHashCode.Exclude
     private Integer id;
     @NotBlank(message = "Название не может быть пустым")
     private String name;
     @Size(max = 200, message = "Максимальная длина описания — 200 символов")
+    @NotBlank
     private String description;
     @NotNull
     private LocalDate releaseDate;
