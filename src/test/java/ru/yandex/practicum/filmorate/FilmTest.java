@@ -25,9 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FilmTest {
 
     private static Validator validator;
-    //private static FilmController controller = new FilmController();
 
-    private final static FilmService filmService = new FilmService(
+    private final FilmService filmService = new FilmService(
             new InMemoryFilmStorage(),
             new InMemoryUserStorage()
     );
