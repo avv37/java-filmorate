@@ -7,9 +7,11 @@ import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.yandex.practicum.filmorate.controller.FilmController;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.service.FilmService;
+import ru.yandex.practicum.filmorate.storage.film.InMemoryFilmStorage;
+import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -23,7 +25,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FilmTest {
 
     private static Validator validator;
-    private static FilmController controller = new FilmController();
+    //private static FilmController controller = new FilmController();
+
+    private final static FilmService filmService = new FilmService(
+            new InMemoryFilmStorage(),
+            new InMemoryUserStorage()
+    );
 
     @BeforeAll
     static void setUp() {
@@ -148,7 +155,7 @@ public class FilmTest {
 
         ValidationException validationException = assertThrows(
                 ValidationException.class,
-                () -> controller.create(film)
+                () -> filmService.addFilm(film)
         );
 
         assertTrue(validationException.getMessage()
