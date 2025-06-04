@@ -39,31 +39,31 @@ public class UserService {
 
     public User addFriend(Integer id, Integer friendId) {
         log.info("юзеру {} добавляем френда {}", id, friendId);
-        User user = getUserOrThrow(id);
-        User friend = getUserOrThrow(friendId);
-        user = userStorage.addFriend(id, friendId);
-        friend = userStorage.addFriend(friendId, id);
+        getUserOrThrow(id);
+        getUserOrThrow(friendId);
+        User user = userStorage.addFriend(id, friendId);
+        userStorage.addFriend(friendId, id);
         return user;
     }
 
     public void deleteFriend(Integer id, Integer friendId) {
         log.info("у юзера {} удаляем френда {}", id, friendId);
-        User user = getUserOrThrow(id);
-        User friend = getUserOrThrow(friendId);
+        getUserOrThrow(id);
+        getUserOrThrow(friendId);
         userStorage.deleteFriend(id, friendId);
         userStorage.deleteFriend(friendId, id);
     }
 
     public Collection<User> getFriends(Integer id) {
         log.info("получаем друзей юзера {}", id);
-        User user = getUserOrThrow(id);
+        getUserOrThrow(id);
         return userStorage.getFriends(id);
     }
 
     public Collection<User> getCommonFriends(Integer id, Integer friendId) {
         log.info("получаем общих друзей юзера {} и френда {}", id, friendId);
-        User user = getUserOrThrow(id);
-        User friend = getUserOrThrow(friendId);
+        getUserOrThrow(id);
+        getUserOrThrow(friendId);
         return userStorage.getCommonFriends(id, friendId);
     }
 
