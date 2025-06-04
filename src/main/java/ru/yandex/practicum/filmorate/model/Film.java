@@ -4,16 +4,22 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Film.
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Film {
     private Integer id;
     @NotBlank(message = "Название не может быть пустым")
@@ -25,4 +31,5 @@ public class Film {
     private LocalDate releaseDate;
     @Positive
     private Integer duration;
+    private Set<Integer> likes = new HashSet<>();
 }
