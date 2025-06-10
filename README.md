@@ -2,7 +2,7 @@
 Template repository for Filmorate project.
 <br>
 ## Схема БД
-![filmorate DB scheme](QuickDBD-Free Diagram filmorate.png)
+![filmorate DB scheme](java-filmorate/QuickDBD-Free Diagram filmorate.png)
 <br>
 ## Запросы
 
