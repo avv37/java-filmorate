@@ -5,7 +5,6 @@ Template repository for Filmorate project.
 ![filmorate DB scheme](QuickDBD_Free_Diagram_filmorate.png)
 <br>
 ## Комментарий
-- Таблица friendship_status пригодится в том случае, если потребуется вывести название статусов (confirm/unconfirm)
 - Таблица rating пригодится в том случае, если потребуется вывести не код NC-17, а текст "лицам до 18 лет просмотр запрещён" и т.д.
 - Остальные таблицы понятны.
 ## Запросы
@@ -92,7 +91,6 @@ SELECT
 	fs.name 
 FROM friendship AS fr
 JOIN users AS u ON u.id = fr.userid AND fr.userid = 5
-JOIN friendship_status fs ON fr.status = fs.code
 ```
 
 - Общие друзья юзеров 5 и 6
