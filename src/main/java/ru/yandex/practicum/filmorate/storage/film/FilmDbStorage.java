@@ -219,11 +219,7 @@ public class FilmDbStorage implements FilmStorage {
     }
 
     private Set<Integer> getLikes(Integer id) {
-        String query = """
-                SELECT u.* FROM users u 
-                JOIN likes l ON u.id = l.user_id 
-                WHERE l.film_id = ?
-                """;
+        String query = "SELECT u.* FROM users u JOIN likes l ON u.id = l.user_id WHERE l.film_id = ?";
         List<User> users = jdbcTemplate.query(query, userRowMapper, id);
         return users.stream()
                 .map(user -> user.getId())

@@ -4,9 +4,7 @@ Template repository for Filmorate project.
 ## Схема БД
 ![filmorate DB scheme](QuickDBD_Free_Diagram_filmorate.png)
 <br>
-## Комментарий
-- Таблица rating пригодится в том случае, если потребуется вывести не код NC-17, а текст "лицам до 18 лет просмотр запрещён" и т.д.
-- Остальные таблицы понятны.
+
 ## Запросы
 
 - Все фильмы с количеством лайков
