@@ -98,6 +98,7 @@ public class FilmDbStorage implements FilmStorage {
                 film.getMpa().getId(),
                 id
         );
+        deleteGenresFromFilm(id);
         return setGenres(film);
     }
 
@@ -216,6 +217,11 @@ public class FilmDbStorage implements FilmStorage {
     private void setGenreToFilm(Integer filmId, Integer genreId) {
         String query = "INSERT INTO film_genres (film_id, genre_id) VALUES (?, ?)";
         jdbcTemplate.update(query, filmId, genreId);
+    }
+
+    private void deleteGenresFromFilm(Integer filmId) {
+        String query = "DELETE FROM film_genres WHERE film_id = ?";
+        jdbcTemplate.update(query, filmId);
     }
 
     private Set<Integer> getLikes(Integer id) {

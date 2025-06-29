@@ -96,7 +96,7 @@ public class FilmService {
         return filmStorage.getMostPopulars(amount);
     }
 
-    public void checkFilmOrThrow(Film film) {
+    private void checkFilmOrThrow(Film film) {
         if (film.getReleaseDate().isBefore(firstFilmDate)) {
             throw new ValidationException("Дата релиза должна быть не раньше 28.12.1895");
         }
