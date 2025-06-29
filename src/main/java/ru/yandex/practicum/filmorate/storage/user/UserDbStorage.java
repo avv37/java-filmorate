@@ -120,8 +120,8 @@ public class UserDbStorage implements UserStorage {
     @Override
     public List<User> getFriends(Integer id) {
         String query = """
-                SELECT u.* FROM users u 
-                JOIN friendship f ON u.id = f.friend_id 
+                SELECT u.* FROM users u
+                JOIN friendship f ON u.id = f.friend_id
                 WHERE f.user_id = ?
                 """;
         return jdbcTemplate.query(query, userRowMapper, id);
