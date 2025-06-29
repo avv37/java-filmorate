@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+@Component("InMemoryFilmStorage")
 public class InMemoryFilmStorage implements FilmStorage {
     private final Map<Integer, Film> films = new HashMap<>();
 
@@ -47,17 +47,15 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     @Override
-    public Film like(Integer filmId, Integer userId) {
+    public void like(Integer filmId, Integer userId) {
         Film film = films.get(filmId);
         film.getLikes().add(userId);
-        return film;
     }
 
     @Override
-    public Film unLike(Integer filmId, Integer userId) {
+    public void unLike(Integer filmId, Integer userId) {
         Film film = films.get(filmId);
         film.getLikes().remove(userId);
-        return film;
     }
 
     @Override
