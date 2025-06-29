@@ -17,9 +17,9 @@ public interface FilmStorage {
 
     Optional<Film> getFilmById(Integer id);
 
-    Film like(Integer filmId, Integer userId);
+    void like(Integer filmId, Integer userId);
 
-    Film unLike(Integer filmId, Integer userId);
+    void unLike(Integer filmId, Integer userId);
 
     Collection<Film> getMostPopulars(Integer amount);
 

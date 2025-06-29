@@ -7,10 +7,13 @@ import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.service.FilmService;
 import ru.yandex.practicum.filmorate.storage.film.InMemoryFilmStorage;
+import ru.yandex.practicum.filmorate.storage.genre.GenreDbStorage;
+import ru.yandex.practicum.filmorate.storage.mpa.MpaDbStorage;
 import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
 
 import java.time.LocalDate;
@@ -25,11 +28,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FilmTest {
 
     private static Validator validator;
-
+    private static JdbcTemplate jdbcTemplate;
     private final FilmService filmService = new FilmService(
             new InMemoryFilmStorage(),
-            new InMemoryUserStorage()
+            new InMemoryUserStorage(),
+            new MpaDbStorage(jdbcTemplate),
+            new GenreDbStorage(jdbcTemplate)
     );
+
 
     @BeforeAll
     static void setUp() {

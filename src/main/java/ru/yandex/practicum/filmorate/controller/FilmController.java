@@ -46,17 +46,18 @@ public class FilmController {
     }
 
     @PutMapping
-    public Film update(@Valid @RequestBody Film newFilm) {
-        return filmService.updateFilm(newFilm);
+    public Film update(@Valid @RequestBody Film film) {
+        log.info("controller update " + film.toString());
+        return filmService.updateFilm(film);
     }
 
     @PutMapping("/{id}/like/{userId}")
-    public Film like(@PathVariable Integer id, @PathVariable Integer userId) {
-        return filmService.like(id, userId);
+    public void like(@PathVariable Integer id, @PathVariable Integer userId) {
+        filmService.like(id, userId);
     }
 
     @DeleteMapping("/{id}/like/{userId}")
-    public Film unLike(@PathVariable Integer id, @PathVariable Integer userId) {
-        return filmService.unLike(id, userId);
+    public void unLike(@PathVariable Integer id, @PathVariable Integer userId) {
+        filmService.unLike(id, userId);
     }
 }
